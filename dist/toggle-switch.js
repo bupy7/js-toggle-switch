@@ -1,18 +1,16 @@
-(function (root, factory) {
+(function (global, factory) {
   if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module unless amdModuleId is set
-    define([], function () {
-      return (factory());
-    });
-  } else if (typeof module === 'object' && module.exports) {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
-    module.exports = factory();
+    define('ToggleSwitch', ['exports'], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(exports);
   } else {
-    root['ToggleSwitch'] = factory();
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global['ToggleSwitch'] = mod.exports.default;
   }
-}(this, function () {
+})(this, function (exports) {
 
 'use strict';
 
@@ -120,6 +118,16 @@ var ToggleSwitch = function () {
     }
 
     /**
+     * @returns {Boolean}
+     */
+
+  }, {
+    key: 'getValue',
+    value: function getValue() {
+      return this._checkbox.checked;
+    }
+
+    /**
      * @param {Object} options
      * @private
      */
@@ -157,6 +165,8 @@ var ToggleSwitch = function () {
     value: function _render() {
       this._container = document.createElement('div');
       this._container.classList.add('toggle-switch');
+
+      this._checkbox.parentNode.insertBefore(this._container, this._checkbox.nextSibling);
 
       this._tongue = document.createElement('div');
       this._tongue.classList.add('toggle-switch__tongue');
@@ -204,4 +214,4 @@ var ToggleSwitch = function () {
 exports.default = ToggleSwitch;
 
 
-}));
+});

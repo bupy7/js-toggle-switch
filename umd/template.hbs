@@ -1,0 +1,20 @@
+(function (global, factory) {
+  if (typeof define === 'function' && define.amd) {
+    define('{{globalAlias}}', ['exports'], factory);
+  } else if (typeof exports !== "undefined") {
+    factory(exports);
+  } else {
+    var mod = {
+      exports: {}
+    };
+    factory(mod.exports);
+    global['{{globalAlias}}'] = mod.exports.default;
+  }
+})(this, function (exports) {
+
+{{{code}}}
+{{#if objectToExport}}
+return {{{objectToExport}}};
+{{/if}}
+
+});

@@ -24,11 +24,15 @@
   },
   "homepage": "https://github.com/bupy7/js-toggle-switch",
   "scripts": {
-    "build": "node_modules/.bin/grunt"
+    "build": "node_modules/.bin/grunt",
+    "test:run": "node_modules/.bin/grunt karma:default",
+    "test:run-without-coverage": "node_modules/.bin/grunt karma:without-coverage"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
     "eslint-config-standard": "^10.2.1",
     "eslint-config-standart": "^0.2.0",
     "eslint-plugin-import": "^2.8.0",
@@ -39,10 +43,17 @@
     "grunt-babel": "^7.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^3.1.0",
     "grunt-cssnano": "^2.1.0",
     "grunt-eslint": "^19.0.0",
+    "grunt-karma": "^2.0.0",
     "grunt-umd": "^2.4.0",
-    "install": "^0.10.1",
-    "uninstall": "0.0.0"
+    "karma": "^1.7.1",
+    "karma-coverage": "^1.1.1",
+    "karma-coveralls": "^1.1.2",
+    "karma-html2js-preprocessor": "^1.1.0",
+    "karma-mocha": "^1.3.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "mocha": "^4.0.1"
   }
 }

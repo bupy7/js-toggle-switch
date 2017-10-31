@@ -25,6 +25,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           src: 'dist/toggle-switch.js',
+          template: 'umd/template.hbs',
           globalAlias: 'ToggleSwitch'
         }
       }
@@ -46,15 +47,24 @@ module.exports = function (grunt) {
         }
       }
     },
-    // karma: {
-    //     options: {
-    //         configFile: 'karma.conf.js'
-    //     },
-    //     dev: {},
-    //     ci: {
-    //         reporters: ['progress', 'coverage', 'coveralls']
-    //     }
-    // }
+    uglify: {
+      options: {
+        mangle: false
+      },
+      dist: {
+        src: 'dist/toggle-switch.js',
+        dest: 'dist/toggle-switch.min.js'
+      }
+    },
+    karma: {
+        options: {
+            configFile: 'karma.conf.js'
+        },
+        'without-coverage': {},
+        default: {
+            reporters: ['progress', 'coverage', 'coveralls']
+        }
+    }
   });
 
   grunt.loadNpmTasks('grunt-babel');
@@ -62,7 +72,16 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-umd');
   grunt.loadNpmTasks('grunt-cssnano');
   grunt.loadNpmTasks('grunt-eslint');
-  // grunt.loadNpmTasks('grunt-karma');
-  //
-  grunt.registerTask('default', ['babel', 'sass', 'umd', 'cssnano', 'eslint'/* 'karma:dev''*/]);
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-karma');
+
+  grunt.registerTask('default', [
+    'eslint',
+    'babel',
+    'sass',
+    'umd',
+    'uglify',
+    'cssnano',
+    'karma:without-coverage'
+  ]);
 };

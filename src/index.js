@@ -79,6 +79,13 @@ class ToggleSwitch {
   }
 
   /**
+   * @returns {Boolean}
+   */
+  getValue () {
+    return this._checkbox.checked
+  }
+
+  /**
    * @param {Object} options
    * @private
    */
@@ -107,6 +114,8 @@ class ToggleSwitch {
   _render () {
     this._container = document.createElement('div')
     this._container.classList.add('toggle-switch')
+
+    this._checkbox.parentNode.insertBefore(this._container, this._checkbox.nextSibling)
 
     this._tongue = document.createElement('div')
     this._tongue.classList.add('toggle-switch__tongue')
