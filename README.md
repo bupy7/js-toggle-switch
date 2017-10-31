@@ -1,6 +1,9 @@
 js-toggle-switch
 ================
 
+[![Build Status](https://travis-ci.org/bupy7/js-toggle-switch.svg?branch=master)](https://travis-ci.org/bupy7/js-toggle-switch)
+[![Coverage Status](https://coveralls.io/repos/github/bupy7/js-toggle-switch/badge.svg?branch=master)](https://coveralls.io/github/bupy7/js-toggle-switch?branch=master)
+
 A toggle switch on native Javascript.
 
 Install
