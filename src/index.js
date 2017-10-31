@@ -92,7 +92,7 @@ class ToggleSwitch {
   _configuration (options) {
     let allowedOptionsMap = ['onLabel', 'offLabel']
     for (let name in options) {
-      if (this[name] !== undefined && allowedOptionsMap.indexOf(name) !== -1) {
+      if (this['_' + name] !== undefined && allowedOptionsMap.indexOf(name) !== -1) {
         this['_' + name] = options[name]
       }
     }

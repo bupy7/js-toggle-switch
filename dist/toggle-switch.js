@@ -137,7 +137,7 @@ var ToggleSwitch = function () {
     value: function _configuration(options) {
       var allowedOptionsMap = ['onLabel', 'offLabel'];
       for (var name in options) {
-        if (this[name] !== undefined && allowedOptionsMap.indexOf(name) !== -1) {
+        if (this['_' + name] !== undefined && allowedOptionsMap.indexOf(name) !== -1) {
           this['_' + name] = options[name];
         }
       }
