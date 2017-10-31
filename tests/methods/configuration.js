@@ -1,4 +1,4 @@
-describe('configuration', function () {
+describe('_configuration', function () {
   it('should set labels', function () {
     var toggleSwitch = new window.ToggleSwitch('.checkbox', {
       onLabel: 'Yes',
