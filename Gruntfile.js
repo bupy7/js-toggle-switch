@@ -36,8 +36,8 @@ module.exports = function (grunt) {
         },
         target: [
             'src/**/*.js',
-            // 'tests/**/*.js',
-            // '!tests/coverage/html/*.js'
+            'tests/**/*.js',
+            '!tests/coverage/html/*.js'
         ]
     },
     cssnano: {

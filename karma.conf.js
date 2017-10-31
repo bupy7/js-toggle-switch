@@ -13,7 +13,7 @@ module.exports = function (config) {
       'tests/hooks/before-each.js',
       // tests
       'tests/methods/*.js',
-      //'tests/events/*.js',
+      'tests/events/*.js',
       // fixtures
       'tests/fixtures/body.html'
     ],

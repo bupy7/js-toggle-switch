@@ -1,10 +1,10 @@
-beforeEach(function() {
-  var container = document.getElementById('container');
+beforeEach(function () {
+  var container = document.getElementById('container')
 
-  container.innerHTML = '';
+  container.innerHTML = ''
 
-  var checkbox = document.createElement('input');
-  checkbox.setAttribute('type', 'checkbox');
-  checkbox.classList.add('checkbox');
-  container.appendChild(checkbox);
-});
+  var checkbox = document.createElement('input')
+  checkbox.setAttribute('type', 'checkbox')
+  checkbox.classList.add('checkbox')
+  container.appendChild(checkbox)
+})
