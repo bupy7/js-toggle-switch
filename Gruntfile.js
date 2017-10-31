@@ -64,7 +64,21 @@ module.exports = function (grunt) {
         default: {
             reporters: ['progress', 'coverage', 'coveralls']
         }
-    }
+    },
+    copy: {
+      main: {
+        files: [
+          {
+            src: 'dist/toggle-switch.css',
+            dest: 'docs/toggle-switch.css'
+          },
+          {
+            src: 'dist/toggle-switch.js',
+            dest: 'docs/toggle-switch.js'
+          },
+        ],
+      }
+    },
   });
 
   grunt.loadNpmTasks('grunt-babel');
@@ -74,6 +88,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-eslint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   grunt.registerTask('default', [
     'eslint',
@@ -82,6 +97,7 @@ module.exports = function (grunt) {
     'umd',
     'uglify',
     'cssnano',
-    'karma:without-coverage'
+    'copy',
+    'karma:without-coverage',
   ]);
 };
