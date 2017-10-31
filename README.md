@@ -40,6 +40,65 @@ var toggleSwitch = new ToggleSwitch('input[name="some_chekbox_name"]');
 </script>
 ```
 
+Build
+-----
+
+### Using Docker
+
+Run dev environment:
+
+```bash
+$ docker-compose up
+```
+
+Run Grunt:
+
+```bash
+$ docker-compose run --rm ext npm run build
+```
+
+### Using locale dev environment
+
+```bash
+$ npm install
+$ npm run build
+```
+
+Options
+-------
+
+The options inject to the second argument of `ToggleSwitch`. Options is `object`.
+
+```js
+new ToggleSwitch('.some-checkbox', {
+  onLabel: 'Yes', // [string] - Label for `true` value of checkbox. 
+  offLabel: 'No' // [string] - Label for `false` value of checkbox. 
+})
+```
+
+Methods
+-------
+
+- getValue() [string] - Returns current value of the checkbox.
+- turnOn() - Set true checkbox value.
+- turnOn() - Set false checkbox value.
+- toggle() - Set false/true checkbox value.
+
+Run tests
+---------
+
+### Using Docker
+
+```bash
+$ docker-compose run --rm ext npm run test:run-without-coverage
+```
+
+### Using locale dev environment
+
+```bash
+$ npm run test
+```
+
 License
 -------
 
