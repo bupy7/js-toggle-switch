@@ -6,6 +6,8 @@ js-toggle-switch
 
 A toggle switch on native Javascript.
 
+[DEMO](https://bupy7.github.io/js-toggle-switch/)
+
 Install
 -------
 
