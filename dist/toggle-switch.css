@@ -18,7 +18,8 @@
   -ms-user-select: none;
   outline: none;
 }
-.toggle-switch .toggle-switch__tongue {
+
+.toggle-switch__tongue {
   text-transform: uppercase;
   font-size: 12px;
   line-height: 34px;
@@ -37,21 +38,26 @@
   -moz-transition: all 0.2s linear;
   -o-transition: all 0.2s linear;
 }
-.toggle-switch .toggle-switch__checkbox {
+
+.toggle-switch__checkbox {
   display: none;
 }
-.toggle-switch.toggle-switch--on > .toggle-switch__tongue {
+
+.toggle-switch--on > .toggle-switch__tongue {
   left: 100%;
   margin-left: -35px;
   background-color: rgba(92, 184, 92, 0.7);
 }
-.toggle-switch.toggle-switch--on:hover > .toggle-switch__tongue {
+
+.toggle-switch--on:hover > .toggle-switch__tongue {
   background-color: rgba(92, 184, 92, 0.85);
 }
-.toggle-switch.toggle-switch--off > .toggle-switch__tongue {
+
+.toggle-switch--off > .toggle-switch__tongue {
   left: 0;
   background-color: rgba(217, 83, 79, 0.7);
 }
-.toggle-switch.toggle-switch--off:hover > .toggle-switch__tongue {
+
+.toggle-switch--off:hover > .toggle-switch__tongue {
   background-color: rgba(217, 83, 79, 0.85);
 }
