@@ -10,7 +10,7 @@
     // like Node.
     module.exports = factory();
   } else {
-    factory();
+    root['ToggleSwitch'] = factory();
   }
 }(this, function () {
 

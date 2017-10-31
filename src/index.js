@@ -2,14 +2,14 @@ class ToggleSwitch {
   /**
    * @returns {String}
    */
-  get CSS_CLASS_ON() {
+  get CSS_CLASS_ON () {
     return 'toggle-switch--on'
   }
 
   /**
    * @returns {String}
    */
-  get CSS_CLASS_OFF() {
+  get CSS_CLASS_OFF () {
     return 'toggle-switch--off'
   }
 
@@ -18,7 +18,7 @@ class ToggleSwitch {
    * @param {HTMLInputElement|String} checkbox
    * @param {Object} [options]
    */
-  constructor(checkbox, options) {
+  constructor (checkbox, options) {
     /**
      * @type {HTMLInputElement}
      * @private
@@ -28,12 +28,12 @@ class ToggleSwitch {
      * @type {HTMLElement}
      * @private
      */
-    this._container = null;
+    this._container = null
     /**
      * @type {HTMLElement}
      * @private
      */
-    this._tongue = null;
+    this._tongue = null
     /**
      * @type {String}
      * @private
@@ -45,12 +45,12 @@ class ToggleSwitch {
      */
     this._offLabel = 'Off'
 
-    this._configuration(options || {});
-    this._render();
+    this._configuration(options || {})
+    this._render()
     this._addListeners()
   }
 
-  turnOn() {
+  turnOn () {
     if (this._checkbox.checked !== false) {
       return
     }
@@ -60,7 +60,7 @@ class ToggleSwitch {
     this._renderTurnOn()
   }
 
-  turnOff() {
+  turnOff () {
     if (this._checkbox.checked !== true) {
       return
     }
@@ -70,7 +70,7 @@ class ToggleSwitch {
     this._renderTurnOff()
   }
 
-  toggle() {
+  toggle () {
     if (this._checkbox.checked) {
       this.turnOff()
     } else {
@@ -82,7 +82,7 @@ class ToggleSwitch {
    * @param {Object} options
    * @private
    */
-  _configuration(options) {
+  _configuration (options) {
     let allowedOptionsMap = ['onLabel', 'offLabel']
     for (let name in options) {
       if (this[name] !== undefined && allowedOptionsMap.indexOf(name) !== -1) {
@@ -94,17 +94,17 @@ class ToggleSwitch {
   /**
    * @private
    */
-  _addListeners() {
+  _addListeners () {
     let self = this
     this._container.addEventListener('click', () => {
       self.toggle()
-    });
+    })
   }
 
   /**
    * @private
    */
-  _render() {
+  _render () {
     this._container = document.createElement('div')
     this._container.classList.add('toggle-switch')
 
@@ -117,14 +117,14 @@ class ToggleSwitch {
     }
     this._container.appendChild(this._tongue)
 
-    this._checkbox.classList.add('toggle-switch__checkbox');
+    this._checkbox.classList.add('toggle-switch__checkbox')
     this._container.appendChild(this._checkbox)
   }
 
   /**
    * @private
    */
-  _renderTurnOn() {
+  _renderTurnOn () {
     this._container.classList.remove(this.CSS_CLASS_OFF)
     this._container.classList.add(this.CSS_CLASS_ON)
 
@@ -134,7 +134,7 @@ class ToggleSwitch {
   /**
    * @private
    */
-  _renderTurnOff() {
+  _renderTurnOff () {
     this._container.classList.remove(this.CSS_CLASS_ON)
     this._container.classList.add(this.CSS_CLASS_OFF)
 
