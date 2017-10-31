@@ -24,8 +24,8 @@ Usage
 
 ```html
 // include style and script
-<link href="build/toggle-switch.min.css" rel="stylesheet">
-<script type="text/javascript" src="build/toggle-switch.min.js"></script>
+<link href="dist/toggle-switch.min.css" rel="stylesheet">
+<script type="text/javascript" src="dist/toggle-switch.min.js"></script>
 ```
 
 **Add checkbox:**
