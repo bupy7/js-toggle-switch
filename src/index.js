@@ -51,7 +51,7 @@ class ToggleSwitch {
   }
 
   turnOn () {
-    if (this._checkbox.checked !== false) {
+    if (this._checkbox.checked) {
       return
     }
 
@@ -61,7 +61,7 @@ class ToggleSwitch {
   }
 
   turnOff () {
-    if (this._checkbox.checked !== true) {
+    if (!this._checkbox.checked) {
       return
     }
 

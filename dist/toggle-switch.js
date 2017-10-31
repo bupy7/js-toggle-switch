@@ -88,7 +88,7 @@ var ToggleSwitch = function () {
   _createClass(ToggleSwitch, [{
     key: 'turnOn',
     value: function turnOn() {
-      if (this._checkbox.checked !== false) {
+      if (this._checkbox.checked) {
         return;
       }
 
@@ -99,7 +99,7 @@ var ToggleSwitch = function () {
   }, {
     key: 'turnOff',
     value: function turnOff() {
-      if (this._checkbox.checked !== true) {
+      if (!this._checkbox.checked) {
         return;
       }
 
