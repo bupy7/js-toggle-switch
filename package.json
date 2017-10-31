@@ -1,0 +1,41 @@
+{
+  "name": "js-toggle-switch",
+  "version": "0.1.0",
+  "description": "Toggle switch on native Javascript.",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bupy7/js-toggle-switch.git"
+  },
+  "keywords": [
+    "js",
+    "toggle",
+    "switch",
+    "checkbox",
+    "plugin",
+    "module",
+    "javascript",
+    "native"
+  ],
+  "author": "Belosloodcev Vasily <vasily.belosloodcev@gmail.com>",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/bupy7/js-toggle-switch/issues"
+  },
+  "homepage": "https://github.com/bupy7/js-toggle-switch",
+  "scripts": {
+    "build": "node_modules/.bin/grunt"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^7.0.0",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-uglify": "^2.3.0",
+    "grunt-cssnano": "^2.1.0",
+    "grunt-eslint": "^19.0.0",
+    "grunt-umd": "^2.4.0"
+  }
+}
