@@ -83,7 +83,7 @@ Methods
 
 - getValue() [string] - Returns current value of the checkbox.
 - turnOn() - Set true checkbox value.
-- turnOn() - Set false checkbox value.
+- turnOff() - Set false checkbox value.
 - toggle() - Set false/true checkbox value.
 
 Run tests
