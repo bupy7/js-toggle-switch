@@ -1,3 +1,8 @@
+.toggle-switch,
+.toggle-switch__tongue {
+  box-sizing: border-box;
+}
+
 .toggle-switch {
   display: inline-block;
   border: 1px solid #ccc;
@@ -45,7 +50,7 @@
 
 .toggle-switch--on > .toggle-switch__tongue {
   left: 100%;
-  margin-left: -35px;
+  margin-left: -33px;
   background-color: rgba(92, 184, 92, 0.7);
 }
 
