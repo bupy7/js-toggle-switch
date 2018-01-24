@@ -78,6 +78,10 @@ new ToggleSwitch('.some-checkbox', {
 })
 ```
 
+- `ToggleSwitch.defaultOptions` [object] - Default options for everything new instances.
+    - onLabel [string]
+    - offLabel [string]
+
 Methods
 -------
 

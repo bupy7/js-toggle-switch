@@ -14,6 +14,17 @@ class ToggleSwitch {
   }
 
   /**
+   * Through the this static property you can set up default options for everything new instances.
+   * @returns {Object}
+   */
+  static get defaultOptions () {
+    if (!this._defaultOptions) {
+      this._defaultOptions = {}
+    }
+    return this._defaultOptions
+  }
+
+  /**
    * @constructor
    * @param {HTMLInputElement|String} checkbox
    * @param {Object} [options]
@@ -45,6 +56,7 @@ class ToggleSwitch {
      */
     this._offLabel = 'Off'
 
+    this._configuration(ToggleSwitch.defaultOptions)
     this._configuration(options || {})
     this._render()
     this._addListeners()

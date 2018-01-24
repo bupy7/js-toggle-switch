@@ -1,6 +1,6 @@
 {
   "name": "js-toggle-switch",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Toggle switch on native Javascript.",
   "main": "src/index.js",
   "repository": {
