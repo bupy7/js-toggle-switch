@@ -53,10 +53,12 @@ Run dev environment:
 $ docker-compose up
 ```
 
-Run Grunt:
+Login, install packages and build:
 
-```bash
-$ docker-compose run --rm ext npm run build
+```
+$ docker-compose run ext bash
+$ npm install
+$ npm run build
 ```
 
 ### Using locale dev environment

@@ -17,9 +17,23 @@
     <button type="button" onclick="toggleSwitch.toggle()">Toggle</button>
     <button type="button" onclick="alert(toggleSwitch.getValue() ? 'true' : 'false')">Get value</button>
 
+    <br/>
+    <br/>
+
+    Logs:
+    <textarea rows="10" style="width: 100%"></textarea>
+
     <script type="text/javascript" src="toggle-switch.js"></script>
     <script type="text/javascript">
       var toggleSwitch = new ToggleSwitch('#checkbox');
+
+      document.querySelector('#checkbox').addEventListener('change', function (event) {
+          var oldValue = document.querySelector('textarea').innerHTML;
+          document.querySelector('textarea').innerHTML = oldValue + JSON.stringify({
+            event: 'change',
+            value: this.checked
+          }) + "\n";
+      });
     </script>
   </body>
 </html>

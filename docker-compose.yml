@@ -4,4 +4,3 @@ services:
         build: .
         volumes:
             - .:/src
-        command: npm install

@@ -70,6 +70,8 @@ class ToggleSwitch {
     this._checkbox.checked = true
 
     this._renderTurnOn()
+
+    this._checkbox.dispatchEvent(new Event('change'))
   }
 
   turnOff () {
@@ -80,6 +82,8 @@ class ToggleSwitch {
     this._checkbox.checked = false
 
     this._renderTurnOff()
+
+    this._checkbox.dispatchEvent(new Event('change'))
   }
 
   toggle () {
