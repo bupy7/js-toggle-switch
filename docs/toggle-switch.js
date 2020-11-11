@@ -145,9 +145,10 @@ var ToggleSwitch = function () {
         return;
       }
 
+      this._ready = false;
+
       this._removeListeners();
       this._undraw();
-      this._ready = false;
     }
 
     /**
@@ -163,6 +164,7 @@ var ToggleSwitch = function () {
 
       this._draw();
       this._addListeners();
+
       this._ready = true;
     }
 
