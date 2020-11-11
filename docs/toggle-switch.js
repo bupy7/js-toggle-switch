@@ -22,34 +22,17 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+var CSS_CLASS_ON = 'toggle-switch--on';
+var CSS_CLASS_OFF = 'toggle-switch--off';
+
 var ToggleSwitch = function () {
-  _createClass(ToggleSwitch, [{
-    key: 'CSS_CLASS_ON',
+  _createClass(ToggleSwitch, null, [{
+    key: 'defaultOptions',
 
     /**
-     * @returns {String}
-     */
-    get: function get() {
-      return 'toggle-switch--on';
-    }
-
-    /**
-     * @returns {String}
-     */
-
-  }, {
-    key: 'CSS_CLASS_OFF',
-    get: function get() {
-      return 'toggle-switch--off';
-    }
-
-    /**
-     * Through the this static property you can set up default options for everything new instances.
+     * Through the this static property you can setting default options for everyone new instances.
      * @returns {Object}
      */
-
-  }], [{
-    key: 'defaultOptions',
     get: function get() {
       if (!this._defaultOptions) {
         this._defaultOptions = {};
@@ -93,17 +76,23 @@ var ToggleSwitch = function () {
      * @private
      */
     this._offLabel = 'Off';
+    /**
+     * @type {Boolean}
+     * @private
+     */
+    this._ready = false;
+
+    this._onClick = this._onClick.bind(this);
 
     this._configuration(ToggleSwitch.defaultOptions);
     this._configuration(options || {});
     this._render();
-    this._addListeners();
   }
 
   _createClass(ToggleSwitch, [{
     key: 'turnOn',
     value: function turnOn() {
-      if (this._checkbox.checked) {
+      if (!this._ready || this._checkbox.checked) {
         return;
       }
 
@@ -111,12 +100,12 @@ var ToggleSwitch = function () {
 
       this._renderTurnOn();
 
-      this._checkbox.dispatchEvent(new Event('change'));
+      this._checkbox.dispatchEvent(createChangeEvent());
     }
   }, {
     key: 'turnOff',
     value: function turnOff() {
-      if (!this._checkbox.checked) {
+      if (!this._ready || !this._checkbox.checked) {
         return;
       }
 
@@ -124,11 +113,15 @@ var ToggleSwitch = function () {
 
       this._renderTurnOff();
 
-      this._checkbox.dispatchEvent(new Event('change'));
+      this._checkbox.dispatchEvent(createChangeEvent());
     }
   }, {
     key: 'toggle',
     value: function toggle() {
+      if (!this._ready) {
+        return;
+      }
+
       if (this._checkbox.checked) {
         this.turnOff();
       } else {
@@ -144,6 +137,33 @@ var ToggleSwitch = function () {
     key: 'getValue',
     value: function getValue() {
       return this._checkbox.checked;
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy() {
+      if (!this._ready) {
+        return;
+      }
+
+      this._removeListeners();
+      this._undraw();
+      this._ready = false;
+    }
+
+    /**
+     * @private
+     */
+
+  }, {
+    key: '_render',
+    value: function _render() {
+      if (this._ready) {
+        return;
+      }
+
+      this._draw();
+      this._addListeners();
+      this._ready = true;
     }
 
     /**
@@ -169,10 +189,7 @@ var ToggleSwitch = function () {
   }, {
     key: '_addListeners',
     value: function _addListeners() {
-      var self = this;
-      this._container.addEventListener('click', function () {
-        self.toggle();
-      });
+      this._container.addEventListener('click', this._onClick);
     }
 
     /**
@@ -180,8 +197,18 @@ var ToggleSwitch = function () {
      */
 
   }, {
-    key: '_render',
-    value: function _render() {
+    key: '_removeListeners',
+    value: function _removeListeners() {
+      this._container.removeEventListener('click', this._onClick);
+    }
+
+    /**
+     * @private
+     */
+
+  }, {
+    key: '_draw',
+    value: function _draw() {
       this._container = document.createElement('div');
       this._container.classList.add('toggle-switch');
 
@@ -205,10 +232,27 @@ var ToggleSwitch = function () {
      */
 
   }, {
+    key: '_undraw',
+    value: function _undraw() {
+      this._checkbox.classList.remove('toggle-switch__checkbox');
+
+      this._container.parentNode.insertBefore(this._checkbox, this._container.nextSibling);
+
+      this._container.parentNode.removeChild(this._container);
+
+      this._container = null;
+      this._tongue = null;
+    }
+
+    /**
+     * @private
+     */
+
+  }, {
     key: '_renderTurnOn',
     value: function _renderTurnOn() {
-      this._container.classList.remove(this.CSS_CLASS_OFF);
-      this._container.classList.add(this.CSS_CLASS_ON);
+      this._container.classList.remove(CSS_CLASS_OFF);
+      this._container.classList.add(CSS_CLASS_ON);
 
       this._tongue.innerHTML = this._onLabel;
     }
@@ -220,17 +264,37 @@ var ToggleSwitch = function () {
   }, {
     key: '_renderTurnOff',
     value: function _renderTurnOff() {
-      this._container.classList.remove(this.CSS_CLASS_ON);
-      this._container.classList.add(this.CSS_CLASS_OFF);
+      this._container.classList.remove(CSS_CLASS_ON);
+      this._container.classList.add(CSS_CLASS_OFF);
 
       this._tongue.innerHTML = this._offLabel;
+    }
+
+    /**
+     * @private
+     */
+
+  }, {
+    key: '_onClick',
+    value: function _onClick() {
+      this.toggle();
     }
   }]);
 
   return ToggleSwitch;
 }();
 
+/**
+ * @returns {Event}
+ */
+
+
 exports.default = ToggleSwitch;
+function createChangeEvent() {
+  var event = document.createEvent('HTMLEvents');
+  event.initEvent('change', true, false);
+  return event;
+}
 
 
 });

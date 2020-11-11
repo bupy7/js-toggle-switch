@@ -88,9 +88,10 @@ Methods
 -------
 
 - getValue() [string] - Returns current value of the checkbox.
-- turnOn() - Set true checkbox value.
-- turnOff() - Set false checkbox value.
-- toggle() - Set false/true checkbox value.
+- turnOn() - Set to "true" the checkbox value.
+- turnOff() - Set to "false" the checkbox value.
+- toggle() - Set to "false"/"true" the checkbox value.
+- destroy() - Destroy the toggle switch and restore the orginal checkbox.
 
 Run tests
 ---------
@@ -104,7 +105,7 @@ $ docker-compose run --rm ext npm run test:run-without-coverage
 ### Using locale dev environment
 
 ```bash
-$ npm run test
+$ npm run test:run-without-coverage
 ```
 
 License

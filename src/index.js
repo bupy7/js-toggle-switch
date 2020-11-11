@@ -1,20 +1,9 @@
-class ToggleSwitch {
-  /**
-   * @returns {String}
-   */
-  get CSS_CLASS_ON () {
-    return 'toggle-switch--on'
-  }
+const CSS_CLASS_ON = 'toggle-switch--on'
+const CSS_CLASS_OFF = 'toggle-switch--off'
 
+export default class ToggleSwitch {
   /**
-   * @returns {String}
-   */
-  get CSS_CLASS_OFF () {
-    return 'toggle-switch--off'
-  }
-
-  /**
-   * Through the this static property you can set up default options for everything new instances.
+   * Through the this static property you can setting default options for everyone new instances.
    * @returns {Object}
    */
   static get defaultOptions () {
@@ -55,15 +44,21 @@ class ToggleSwitch {
      * @private
      */
     this._offLabel = 'Off'
+    /**
+     * @type {Boolean}
+     * @private
+     */
+    this._ready = false
+
+    this._onClick = this._onClick.bind(this)
 
     this._configuration(ToggleSwitch.defaultOptions)
     this._configuration(options || {})
     this._render()
-    this._addListeners()
   }
 
   turnOn () {
-    if (this._checkbox.checked) {
+    if (!this._ready || this._checkbox.checked) {
       return
     }
 
@@ -71,11 +66,11 @@ class ToggleSwitch {
 
     this._renderTurnOn()
 
-    this._checkbox.dispatchEvent(new Event('change'))
+    this._checkbox.dispatchEvent(createChangeEvent())
   }
 
   turnOff () {
-    if (!this._checkbox.checked) {
+    if (!this._ready || !this._checkbox.checked) {
       return
     }
 
@@ -83,10 +78,14 @@ class ToggleSwitch {
 
     this._renderTurnOff()
 
-    this._checkbox.dispatchEvent(new Event('change'))
+    this._checkbox.dispatchEvent(createChangeEvent())
   }
 
   toggle () {
+    if (!this._ready) {
+      return
+    }
+
     if (this._checkbox.checked) {
       this.turnOff()
     } else {
@@ -101,12 +100,35 @@ class ToggleSwitch {
     return this._checkbox.checked
   }
 
+  destroy () {
+    if (!this._ready) {
+      return
+    }
+
+    this._removeListeners()
+    this._undraw()
+    this._ready = false
+  }
+
+  /**
+   * @private
+   */
+  _render () {
+    if (this._ready) {
+      return
+    }
+
+    this._draw()
+    this._addListeners()
+    this._ready = true
+  }
+
   /**
    * @param {Object} options
    * @private
    */
   _configuration (options) {
-    let allowedOptionsMap = ['onLabel', 'offLabel']
+    const allowedOptionsMap = ['onLabel', 'offLabel']
     for (let name in options) {
       if (this['_' + name] !== undefined && allowedOptionsMap.indexOf(name) !== -1) {
         this['_' + name] = options[name]
@@ -118,16 +140,20 @@ class ToggleSwitch {
    * @private
    */
   _addListeners () {
-    let self = this
-    this._container.addEventListener('click', () => {
-      self.toggle()
-    })
+    this._container.addEventListener('click', this._onClick)
   }
 
   /**
    * @private
    */
-  _render () {
+  _removeListeners () {
+    this._container.removeEventListener('click', this._onClick)
+  }
+
+  /**
+   * @private
+   */
+  _draw () {
     this._container = document.createElement('div')
     this._container.classList.add('toggle-switch')
 
@@ -149,9 +175,23 @@ class ToggleSwitch {
   /**
    * @private
    */
+  _undraw () {
+    this._checkbox.classList.remove('toggle-switch__checkbox')
+
+    this._container.parentNode.insertBefore(this._checkbox, this._container.nextSibling)
+
+    this._container.parentNode.removeChild(this._container)
+
+    this._container = null
+    this._tongue = null
+  }
+
+  /**
+   * @private
+   */
   _renderTurnOn () {
-    this._container.classList.remove(this.CSS_CLASS_OFF)
-    this._container.classList.add(this.CSS_CLASS_ON)
+    this._container.classList.remove(CSS_CLASS_OFF)
+    this._container.classList.add(CSS_CLASS_ON)
 
     this._tongue.innerHTML = this._onLabel
   }
@@ -160,11 +200,25 @@ class ToggleSwitch {
    * @private
    */
   _renderTurnOff () {
-    this._container.classList.remove(this.CSS_CLASS_ON)
-    this._container.classList.add(this.CSS_CLASS_OFF)
+    this._container.classList.remove(CSS_CLASS_ON)
+    this._container.classList.add(CSS_CLASS_OFF)
 
     this._tongue.innerHTML = this._offLabel
   }
+
+  /**
+   * @private
+   */
+  _onClick () {
+    this.toggle()
+  }
 }
 
-export default ToggleSwitch
+/**
+ * @returns {Event}
+ */
+function createChangeEvent () {
+  const event = document.createEvent('HTMLEvents')
+  event.initEvent('change', true, false)
+  return event
+}
